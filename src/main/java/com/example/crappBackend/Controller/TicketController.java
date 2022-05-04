@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 @RequestMapping("/api/ticket")
-//#id, mail, direccion, desc, url
+
 public class TicketController {
     @Autowired
     private TicketRepository ticketRepository;
@@ -22,7 +22,7 @@ public class TicketController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Ticket> getUserById(@PathVariable Long id){
+    public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExeption("Ticket con la siguiente id no existe: " + id));
         return ResponseEntity.ok(ticket);
@@ -34,7 +34,7 @@ public class TicketController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Ticket> updateUser(@PathVariable Long id, @RequestBody Ticket ticketDetails){
+    public ResponseEntity<Ticket> updateTicket(@PathVariable Long id, @RequestBody Ticket ticketDetails){
         Ticket updateTicket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExeption("Ticket con la siguiente id no existe: " + id));
 
