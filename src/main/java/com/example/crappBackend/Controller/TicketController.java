@@ -43,6 +43,7 @@ public class TicketController {
         updateTicket.setDescription(ticketDetails.getDescription());
         updateTicket.setUrl(ticketDetails.getUrl());
         updateTicket.setPicked(ticketDetails.getPicked());
+        updateTicket.setStatus(ticketDetails.getStatus());
 
         ticketRepository.save(updateTicket);
 
