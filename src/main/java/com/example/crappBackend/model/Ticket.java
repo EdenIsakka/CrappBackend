@@ -28,5 +28,6 @@ public class Ticket {
     private String url;
     @Column(name = "picked")
     private Boolean picked;
-
+    @Column(name = "status")
+    private String status;
 }
