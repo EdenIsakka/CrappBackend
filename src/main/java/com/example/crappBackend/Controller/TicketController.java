@@ -23,12 +23,17 @@ public class TicketController {
     public List<Ticket> getAllTicket(){ return ticketRepository.findAll();
     }
 
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+
     @GetMapping("{id}")
+
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExeption("Ticket con la siguiente id no existe: " + id));
         return ResponseEntity.ok(ticket);
     }
+
 
     @GetMapping("filter/{status}")
     public ResponseEntity<List<Ticket>> getTicketByStatus(@PathVariable String status){
@@ -38,6 +43,7 @@ public class TicketController {
         });
         return new ResponseEntity<>(ticketList, HttpStatus.OK);
     }
+
 
     @PostMapping
     public Ticket createTicket(@RequestBody Ticket ticket){
