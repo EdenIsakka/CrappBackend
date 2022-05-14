@@ -21,7 +21,7 @@ public class TicketController {
     public List<Ticket> getAllTicket(){ return ticketRepository.findAll();
     }
 
-    @GetMapping("{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExeption("Ticket con la siguiente id no existe: " + id));
@@ -30,9 +30,8 @@ public class TicketController {
 
     @GetMapping("{status}")
     public ResponseEntity<Ticket> getStatus(@PathVariable String status){
-        Ticket ticket = ticketRepository.fin
-                .orElseThrow(() -> new ResourceNotFoundExeption("El siguiente status no existe: " + status));
-        return ResponseEntity.ok(ticket);
+
+        return null;
     }
 
 
