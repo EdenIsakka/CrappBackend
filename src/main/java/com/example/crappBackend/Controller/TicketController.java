@@ -61,23 +61,14 @@ public class TicketController {
         return new ResponseEntity<>(ticketListParam, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "history/{email}/{param}", method = RequestMethod.GET)
-    @GetMapping("history/{email}/{param}")
-    public  ResponseEntity<List<Ticket>> getHistoryByParam(@PathVariable("email") String email, @PathVariable("param") String param){
+    @RequestMapping(value = "history/{param}", method = RequestMethod.GET)
+    @GetMapping("history/param}")
+    public  ResponseEntity<List<Ticket>> getHistoryByParam(@PathVariable("param") String param){
         List<Ticket> ticketListHistory = new ArrayList<>();
-
-        if(param.equals("true")) {
+        if(param.equals("true")){
             boolean paramb = Boolean.parseBoolean(param);
             ticketRepository.findByPicked(paramb).forEach(ticket -> {
-                if(ticket.getEmail().equals(email) && ticket.getPicked().equals(paramb)){
-                     ticketListHistory.add(ticket);
-                }
-            });
-        }else if(param.equals("Aceptado") || param.equals("Rechazado")){
-            ticketRepository.findByStatus(param).forEach(ticket -> {
-                if(ticket.getEmail().equals(email) && ticket.getStatus().equals(param)){
                     ticketListHistory.add(ticket);
-                }
             });
         }
         return new ResponseEntity<>(ticketListHistory, HttpStatus.OK);
