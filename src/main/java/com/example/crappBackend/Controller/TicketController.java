@@ -49,8 +49,8 @@ public class TicketController {
         return new ResponseEntity<>(ticketList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "user/{email}/{status}", method = RequestMethod.GET)
-    @GetMapping("user/{email}/{status}")
+    @RequestMapping(value = "userhistory/{email}/{status}", method = RequestMethod.GET)
+    @GetMapping("userhistory/{email}/{status}")
     public ResponseEntity<List<Ticket>> getTicketByParam(@PathVariable("email") String email, @PathVariable("status") String status){
         List<Ticket> ticketListParam = new ArrayList<>();
         ticketRepository.findByStatus(status).forEach(ticket -> {
@@ -61,8 +61,8 @@ public class TicketController {
         return new ResponseEntity<>(ticketListParam, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "history/{param}", method = RequestMethod.GET)
-    @GetMapping("history/param}")
+    @RequestMapping(value = "allhistory/{param}", method = RequestMethod.GET)
+    @GetMapping("allhistory/param}")
     public  ResponseEntity<List<Ticket>> getHistoryByParam(@PathVariable("param") String param){
         List<Ticket> ticketListHistory = new ArrayList<>();
         if(param.equals("true")){
